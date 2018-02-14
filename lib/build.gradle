@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+ext {
+    libraryVersionMajor = 1
+    libraryVersionMinor = 0
+    libraryVersionRevision = 0
+
+    libraryVersion = libraryVersionMajor + '.' + libraryVersionMinor + '.' + libraryVersionRevision
+
+    bintrayRepo = 'android-extended'
+    bintrayName = 'falcon-heavy-launcher'
+
+    publishedGroupId = 'musk.elon.launcher'
+    libraryName = 'FalconHeavyLauncher'
+    artifact = 'falcon-heavy-launcher'
+
+    libraryDescription = 'Launch Falcon Heavy in your project! Just for fun!'
+
+    siteUrl = 'https://github.com/drstranges/FalconHeavyLauncher'
+    gitUrl = 'https://github.com/drstranges/FalconHeavyLauncher.git'
+
+    developerId = 'drstranges'
+    developerName = 'Roman Donchenko'
+    developerEmail = 'drstranges@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode libraryVersionRevision
+        versionName libraryVersion
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildToolsVersion '27.0.3'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(Javadoc).all {
+    enabled = false
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
