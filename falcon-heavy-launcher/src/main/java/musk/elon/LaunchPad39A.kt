@@ -20,11 +20,11 @@ class LaunchPad39A(context: Context) : ContextWrapper(context) {
 
     private val inflater by lazy {
         LayoutInflater.from(baseContext).apply {
-            setFactory(FalconHeavyFactory())
+            factory = FalconHeavyFactory()
         }
     }
 
-    override fun getSystemService(name: String?) = if (Context.LAYOUT_INFLATER_SERVICE == name) {
+    override fun getSystemService(name: String?): Any? = if (Context.LAYOUT_INFLATER_SERVICE == name) {
         inflater
     } else {
         super.getSystemService(name)
