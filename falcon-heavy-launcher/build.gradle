@@ -8,12 +8,14 @@ ext {
 
     libraryVersion = libraryVersionMajor + '.' + libraryVersionMinor + '.' + libraryVersionRevision
 
+    bintrayDryRun = true
+
     bintrayRepo = 'android-extended'
     bintrayName = 'falcon-heavy-launcher'
 
     publishedGroupId = 'musk.elon.launcher'
     libraryName = 'FalconHeavyLauncher'
-    artifact = 'falcon-heavy-launcher'
+    publishedArtifactId = 'falcon-heavy-launcher'
 
     libraryDescription = 'Launch Falcon Heavy in your project! Just for fun!'
 
@@ -27,6 +29,7 @@ ext {
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ["Apache-2.0"]
+    allLabels = ['elon', 'musk', 'Falcon']
 }
 
 android {
@@ -60,9 +63,4 @@ repositories {
     mavenCentral()
 }
 
-tasks.withType(Javadoc).all {
-    enabled = false
-}
-
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+apply from: 'publish.gradle'

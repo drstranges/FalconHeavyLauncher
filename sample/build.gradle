@@ -26,6 +26,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':lib')
+    implementation project(':falcon-heavy-launcher')
+//    implementation 'musk.elon.launcher:falcon-heavy-launcher:1.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }

@@ -1,0 +1,94 @@
+apply plugin: 'maven-publish'
+//apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+def gpgPassphrase = properties.getProperty("bintray.gpg.password")
+def bUser = properties.getProperty("bintray.user")
+def bKey = properties.getProperty("bintray.apikey")
+
+group publishedGroupId
+version libraryVersion
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    failOnError = false
+}
+
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+publishing {
+    publications {
+        Production(MavenPublication) {
+            artifact("$buildDir/outputs/aar/falcon-heavy-launcher-release.aar")
+            artifact sourcesJar
+            artifact javadocJar
+            groupId publishedGroupId
+            artifactId publishedArtifactId
+            version this.version
+
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+
+                // Iterate over the implementation dependencies (we don't want the test ones), adding a <dependency> node for each
+                configurations.implementation.allDependencies.each {
+                    // Ensure dependencies such as fileTree are not included in the pom.
+                    if (it.name != 'unspecified') {
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                    }
+                }
+            }
+        }
+    }
+}
+
+bintray {
+    user = bUser
+    key = bKey
+    publications = ['Production']
+    configurations = ['archives']
+    override = true
+    pkg {
+        repo = bintrayRepo
+        name = bintrayName
+        description = libraryDescription
+        publish = true
+        dryRun = bintrayDryRun
+        publicDownloadNumbers = true
+        licenses = allLicenses
+        websiteUrl = siteUrl
+        issueTrackerUrl = siteUrl
+        vcsUrl = gitUrl
+        labels = allLabels
+        version {
+            name = this.version
+            desc = "${this.version}"
+            released = new Date()
+            vcsTag = this.version
+            gpg {
+                sign = true
+                passphrase = gpgPassphrase
+            }
+        }
+    }
+}
