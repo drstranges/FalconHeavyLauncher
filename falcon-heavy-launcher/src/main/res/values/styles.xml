@@ -3,6 +3,7 @@
     <style name="infinity">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+        <item name="type">real_space</item>
     </style>
 
 </resources>

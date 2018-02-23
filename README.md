@@ -12,7 +12,7 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile 'musk.elon.launcher:falcon-heavy-launcher:1.0.0'
+    compile 'musk.elon.launcher:falcon-heavy-launcher:1.0.3'
 }
 ```
 

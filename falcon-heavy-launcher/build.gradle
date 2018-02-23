@@ -4,11 +4,11 @@ apply plugin: 'kotlin-android'
 ext {
     libraryVersionMajor = 1
     libraryVersionMinor = 0
-    libraryVersionRevision = 0
+    libraryVersionRevision = 3
 
     libraryVersion = libraryVersionMajor + '.' + libraryVersionMinor + '.' + libraryVersionRevision
 
-    bintrayDryRun = true
+    bintrayDryRun = false
 
     bintrayRepo = 'android-extended'
     bintrayName = 'falcon-heavy-launcher'
@@ -42,7 +42,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FalconHeavyLauncher.iml" filepath="$PROJECT_DIR$/FalconHeavyLauncher.iml" />
-      <module fileurl="file://$PROJECT_DIR$/falcon-heavy-launcher/lib.iml" filepath="$PROJECT_DIR$/falcon-heavy-launcher/lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FalconHeavyLauncher.iml" filepath="$PROJECT_DIR$/.idea/FalconHeavyLauncher.iml" />
+      <module fileurl="file://D:\Android_Work\FalconHeavyLauncher\FalconHeavyLauncher.iml" filepath="D:\Android_Work\FalconHeavyLauncher\FalconHeavyLauncher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/falcon-heavy-launcher/falcon-heavy-launcher.iml" filepath="$PROJECT_DIR$/falcon-heavy-launcher/falcon-heavy-launcher.iml" />
+      <module fileurl="file://D:\Android_Work\FalconHeavyLauncher\falcon-heavy-launcher\lib.iml" filepath="D:\Android_Work\FalconHeavyLauncher\falcon-heavy-launcher\lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
     </modules>
   </component>
